@@ -16,7 +16,6 @@ public class Restaurant {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
     }
-
     public boolean isRestaurantOpen() {
         LocalTime timeNow= getCurrentTime();
         if((timeNow.equals(openingTime)||timeNow.equals(closingTime)||(timeNow.isAfter(openingTime)&&timeNow.isBefore(closingTime)))){
@@ -24,13 +23,10 @@ public class Restaurant {
         }
         return false;
     }
-
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
-
     public List<Item> getMenu() {
         return this.menu;
     }
-
     private Item findItemByName(String itemName){
         for(Item item: menu) {
             if(item.getName().equals(itemName))
@@ -38,18 +34,14 @@ public class Restaurant {
         }
         return null;
     }
-
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
         menu.add(newItem);
     }
-    
     public void removeFromMenu(String itemName) throws itemNotFoundException {
-
         Item itemToBeRemoved = findItemByName(itemName);
         if (itemToBeRemoved == null)
             throw new itemNotFoundException(itemName);
-
         menu.remove(itemToBeRemoved);
     }
     public void displayDetails(){
@@ -58,12 +50,9 @@ public class Restaurant {
                 +"Opening time:"+ openingTime +"\n"
                 +"Closing time:"+ closingTime +"\n"
                 +"Menu:"+"\n"+getMenu());
-
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
     public int getOrderTotal (List<String> selectedItemsFromMenu){
         int total = 0;
         for(String selectedItem : selectedItemsFromMenu) {
